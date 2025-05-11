@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sales Journal</title>
+  <link rel="manifest" href="manifest.json">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script defer src="app.js"></script>
+</head>
+<body class="bg-gray-100 text-gray-900 p-4">
+  <div class="max-w-3xl mx-auto">
+    <h1 class="text-2xl font-bold mb-4">Sales Journal</h1>
+    <button id="addEntry" class="bg-blue-500 text-white p-2 rounded mb-4">+ Add New Entry</button>
+    <div id="entries" class="space-y-4"></div>
+    <div class="mt-6 space-x-2">
+      <button id="exportCsv" class="bg-green-500 text-white p-2 rounded">Export CSV</button>
+      <button id="exportWhatsApp" class="bg-green-400 text-white p-2 rounded">Share on WhatsApp</button>
+    </div>
+  </div>
+
+  <div id="modal" class="fixed inset-0 bg-gray-800 bg-opacity-75 hidden flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg w-11/12 max-w-2xl space-y-4 overflow-y-auto max-h-[90%]">
+      <h2 class="text-xl font-bold" id="modalTitle">New Entry</h2>
+      <textarea id="description" placeholder="Description or Item List" class="w-full border p-2 rounded"></textarea>
+      <input type="datetime-local" id="dateTime" class="w-full border p-2 rounded">
+      <input type="text" id="venue" placeholder="Venue" class="w-full border p-2 rounded">
+      <div id="peopleList" class="space-y-2"></div>
+      <button id="addPerson" class="bg-gray-300 text-black px-2 py-1 rounded">+ Add Person</button>
+      <select id="closeness" class="w-full border p-2 rounded">
+        <option value="Personal Direct Connect">Personal Direct Connect</option>
+        <option value="Indirect Connect">Indirect Connect</option>
+        <option value="Customer Reach Out">Customer Reach Out</option>
+        <option value="Open Pitch">Open Pitch</option>
+      </select>
+      <textarea id="takeaways" placeholder="Key Takeaways and Learnings" class="w-full border p-2 rounded"></textarea>
+      <div id="todoList" class="space-y-2"></div>
+      <button id="addTodo" class="bg-gray-300 text-black px-2 py-1 rounded">+ Add To-Do</button>
+      <div class="flex items-center space-x-2">
+        <label>Objective Met:</label>
+        <div id="objective">
+          <input type="radio" name="objective" value="1">1
+          <input type="radio" name="objective" value="2">2
+          <input type="radio" name="objective" value="3">3
+          <input type="radio" name="objective" value="4">4
+          <input type="radio" name="objective" value="5">5
+        </div>
+      </div>
+      <div class="flex space-x-2">
+        <button id="saveEntry" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
+        <button id="closeModal" class="bg-red-500 text-white px-4 py-2 rounded">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js').then(() => console.log('Service Worker Registered'));
+    }
+  </script>
+</body>
+</html>
